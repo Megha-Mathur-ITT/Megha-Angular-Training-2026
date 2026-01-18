@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopKro</title>
+
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div id="container">
+            <div id="navbar">
+                <div id="logo">
+                    <img src="images/shopKro-logo.png" alt="logo">
+                </div>
+
+                <nav>
+                    <ul id="navbarItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Account</a></li>
+                    </ul>
+                </nav>
+
+                <a href="cart.html">
+                    <img src="images/cart.png" alt="Cart">
+                    <span id="cartProductsCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="productSection">
+            <h2>Products</h2>
+            <div id="productControls">
+                <input type="search" id="searchProduct" placeholder="Search products">
+                <select name="filter" id="categoryFilter">
+                </select>
+            </div>
+
+            <div id="productList"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div id="footerColumn1">
+                        <h3>Download Our App</h3>
+                        <p>Download App for Anroid mobile phone.</p>
+                        <div id="appLogo">
+                            <img src="images/play-store.png" alt="">
+                            <img src="images/app-store.png" alt="">
+                        </div>
+                    </div>
+                    <div id="footerColumn2">
+                        <img src="images/shopKro-logo.png" alt="">
+                        <p>Our purpose is to simplify online shopping by offering trusted products, fair prices, and a
+                            seamless customer experience.</p>
+                    </div>
+                    <div id="footerColumn3">
+                        <h3>Follow us</h3>
+                        <ul id="followUs">
+                            <li>facebook</li>
+                            <li>Twitter</li>
+                            <li>Instagram</li>
+                            <li>YouTube</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr>
+                <p id="copyright">Copyright 2026 - Megha Mathur</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts/cart/updateCartCount.js"></script>
+    <script src="data/productsData.js"></script>
+    <script src="scripts/cart/cartStorage.js"></script>
+    <script src="scripts/cart/renderCart.js"></script>
+    <script src="scripts/cart/cartOperations.js"></script>
+    <script src="scripts/product/productUtils.js"></script>
+    <script src="scripts/product/renderProducts.js"></script>
+    <script src="scripts/product/updateProductList.js"></script>
+
+</body>
+
+</html>

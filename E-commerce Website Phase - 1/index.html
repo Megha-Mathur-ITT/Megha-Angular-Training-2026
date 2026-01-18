@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKro</title>
+
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div id="container">
+            <div id="navbar">
+                <div id="logo">
+                    <img src="images/shopKro-logo.png" alt="logo">
+                </div>
+
+                <nav>
+                    <ul id="navbarItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Account</a></li>
+                    </ul>
+                </nav>
+
+                <a href="cart.html">
+                    <img src="images/cart.png" alt="Cart">
+                    <span id="cartProductsCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="row">
+            <div class="column2">
+                <h1>Give Your Workout A New Style!</h1>
+                <p>Success isn't always about greatness, It's all about consistency. Consistent <br> hard work gains
+                    success. Greatness will come</p>
+                <a href="products.html" id="exploreButton">Explore now &#8594;</a>
+            </div>
+
+            <div class="column2">
+                <img src="images/shoping.png" alt="">
+            </div>
+        </div>
+
+        <div id="testimonial">
+            <div class="smallContainer">
+                <div class="row">
+                    <div class="column3">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis officiis minima impeditdolores optio? Dolorem, unde consectetur eos iusto recusandae excepturi exercitationeratione? Ut voluptate laudantium quisquam, a eligendi possimus ipsam odit voluptas commodi 
+                        </p>
+                        <div class="rating">
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+
+                        </div>
+                        <img src="images/user-1.png" alt="">
+                        <h3>Megha Mathur</h3>
+                    </div>
+                    <div class="column3">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis officiis minima impeditdolores optio? Dolorem, unde consectetur eos iusto recusandae excepturi exercitationeratione? Ut voluptate laudantium quisquam, a eligendi possimus ipsam odit voluptas commodi 
+                        </p>
+                        <div class="rating">
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+
+                        </div>
+                        <img src="images/user-2.png" alt="">
+                        <h3>Mehul Garg</h3>
+                    </div>
+                    <div class="column3">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis officiis minima impeditdolores optio? Dolorem, unde consectetur eos iusto recusandae excepturi exercitationeratione? Ut voluptate laudantium quisquam, a eligendi possimus ipsam odit voluptas commodi 
+                        </p>
+                        <div class="rating">
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+
+                        </div>
+                        <img src="images/user-3.png" alt="">
+                        <h3>Shalini Kaur</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div id="footerColumn1">
+                        <h3>Download Our App</h3>
+                        <p>Download App for Anroid mobile phone.</p>
+                        <div id="appLogo">
+                            <img src="images/play-store.png" alt="">
+                            <img src="images/app-store.png" alt="">
+                        </div>
+                    </div>
+                    <div id="footerColumn2">
+                        <img src="images/shopKro-logo.png" alt="">
+                        <p>Our purpose is to simplify online shopping by offering trusted products, fair prices, and a seamless customer experience.</p>
+                    </div>
+                    <div id="footerColumn3">
+                        <h3>Follow us</h3>
+                        <ul id="followUs">
+                            <li>facebook</li>
+                            <li>Twitter</li>
+                            <li>Instagram</li>
+                            <li>YouTube</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr>
+                <p id="copyright">Copyright 2026 - Megha Mathur</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts/cart/updateCartCount.js"></script>
+    <script src="data/productsData.js"></script>
+    <script src="scripts/cart/cartStorage.js"></script>
+    <script src="scripts/cart/cartOperations.js"></script>
+    <script src="scripts/cart/renderCart.js"></script>
+    <script src="scripts/cart/cartEvents.js"></script>
+</body>
+
+</html>
