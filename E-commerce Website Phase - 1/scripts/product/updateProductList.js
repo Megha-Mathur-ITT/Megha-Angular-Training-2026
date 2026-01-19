@@ -1,16 +1,16 @@
 const allProducts = products;
-const searchProductELement = document.getElementById("searchProduct");
+const searchProductElement = document.getElementById("searchProduct");
 const categoryFilterElement = document.getElementById("categoryFilter");
 
 function updateProductsList()
 {
     let currentVisibleProducts = [...allProducts];
-    const searchedProduct = searchProductELement.value;
+    const searchedProduct = searchProductElement.value;
     const selectedCategory = categoryFilterElement.value;
 
     let productsFound = searchProductByName(allProducts, searchedProduct);
     productsFound = filterProductsByCategory(productsFound, selectedCategory);
-    currentVisibleProducts = productsFound;
+    currentVisibleProducts = [...productsFound];
 
     renderProducts(currentVisibleProducts); 
 }
@@ -18,12 +18,10 @@ function updateProductsList()
 renderCategories();
 renderProducts(allProducts);
 
-searchProductELement.addEventListener("input", (event) => {
-    const searchValue = event.target.value.trim();
-    updateProductsList(searchValue);
+searchProductElement.addEventListener("input", (event) => {
+    updateProductsList();
 });
 
 categoryFilterElement.addEventListener("change", (event) => {
-    const selectedCategory = event.target.value;
-    updateProductsList(selectedCategory);
+    updateProductsList();
 });
