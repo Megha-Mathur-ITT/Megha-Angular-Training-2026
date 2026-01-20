@@ -1,73 +1,77 @@
-function getCartQuantity(productId)
+const allProductsData = products;
+const searchInputElement = document.getElementById("searchProduct");
+const categoryFilterElement = document.getElementById("categoryFilter");
+
+searchInputElement.addEventListener("input", (event) => {
+    updateVisibleProducts();
+});
+
+categoryFilterElement.addEventListener("change", (event) => {
+    updateVisibleProducts();
+});
+
+function createProductCard(productList, product)
 {
-    const storedCart = localStorage.getItem("shopKro_cart");
-    const cart = storedCart ? JSON.parse(storedCart) : [];
-    const cartProduct = cart.find((cartProduct) => (productId == cartProduct.id));
+    const productCard = document.createElement("div");
+    productCard.className = "productCard";  
 
-    if(cartProduct && cartProduct.quantity > 0)
-    {
-        return cartProduct.quantity;
-    }
+    const productCartQuantity = getCartQuantity(product.id);
+    const productAvailableStock = product.stock - productCartQuantity;
 
-    return 0;
-}
+    productCard.innerHTML = `
+        <img src="${product.image}" alt="Product image">
+        <h4>${product.name}</h4>
+        <p>Category: ${product.category}</p>
+        <p>Price: ${product.price}</p>
+        <p>Stock: ${productAvailableStock}</p>
+        <button> ${productAvailableStock <= 0 ? "Out of Stock": "Add to Cart"}</button>
+    `;
 
-function renderCategories()
-{
-    const categoryFilterElement = document.getElementById("categoryFilter");
-    categoryFilterElement.innerHTML = "";
-    const categories = getProductCategories(allProducts);
+    const addToCartButton = productCard.querySelector("button");
 
-    for(let category of categories)
-    {
-        const categoryOption = document.createElement("option");
-        categoryOption.value = category;
-        categoryOption.textContent = category;
-        categoryFilterElement.appendChild(categoryOption);
-    }
+    addToCartButton.addEventListener("click", () => {
+        if(productAvailableStock <= 0)
+        {
+            alert("Product is out of stock.");
+            return;
+        }
+
+        addToCart(product);
+        renderProducts(productList);
+    });
+
+    return productCard;
 }
 
 function renderProducts(productList)
 {
-    const productsListElement = document.getElementById("productList");
-    productsListElement.innerHTML = "";
+    const productsListContainer = document.getElementById("productList");
+    productsListContainer.innerHTML = "";
     
     if(productList.length == 0)
     {
-        productsListElement.innerHTML = "<p>No product found.</p>";
+        productsListContainer.innerHTML = "<p>No product found.</p>";
         return;
     }
 
     for(let product of productList)
     {
-        const productCard = document.createElement("div");
-        productCard.className = "productCard";  
-
-        const cartQuantity = getCartQuantity(product.id);
-        const availableStock = product.stock - cartQuantity;
-
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="Product image">
-            <h4>${product.name}</h4>
-            <p>Category: ${product.category}</p>
-            <p>Price: ${product.price}</p>
-            <p>Stock: ${availableStock}</p>
-            <button> ${availableStock <= 0 ? "Out of Stock": "Add to Cart"}</button>
-        `;
-
-        const addToCartButton = productCard.querySelector("button");
-
-        addToCartButton.addEventListener("click", () => {
-            if(availableStock <= 0)
-            {
-                alert("Product is out of stock.");
-                return;
-            }
-
-            addToCart(product);
-            renderProducts(productList);
-        });
-
-        productsListElement.appendChild(productCard);
+        const productCard = createProductCard(productList, product);
+        productsListContainer.appendChild(productCard);
     }
 }
+
+function updateVisibleProducts()
+{
+    let currentVisibleProducts = [...allProductsData];
+    const searchedProduct = searchInputElement.value;
+    const selectedCategory = categoryFilterElement.value;
+
+    let filteredProducts = searchProductByName(allProductsData, searchedProduct);
+    filteredProducts = filterProductsByCategory(filteredProducts, selectedCategory);
+    currentVisibleProducts = [...filteredProducts];
+
+    renderProducts(currentVisibleProducts); 
+}
+
+renderProducts(allProductsData);

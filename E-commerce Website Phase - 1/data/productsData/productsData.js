@@ -4,7 +4,7 @@ const products = [
         name: "Men's T-shirt",
         price: 800,
         category: "fashion",
-        image: "images/men-product-1.jpg",
+        image: "images/productImages/men-product-1.jpg",
         stock: 10,
     },
     {
@@ -12,7 +12,7 @@ const products = [
         name: "Men's Trouser",
         price: 200,
         category: "fashion",
-        image: "images/men-product-2.jpg",
+        image: "images/productImages/men-product-2.jpg",
         stock: 10,
     },
     {
@@ -20,7 +20,7 @@ const products = [
         name: "Men's T-shirt",
         price: 300,
         category: "fashion",
-        image: "images/men-product-3.jpg",
+        image: "images/productImages/men-product-3.jpg",
         stock: 10,
     },
     {
@@ -28,7 +28,7 @@ const products = [
         name: "Men's T-shirt",
         price: 1500,
         category: "fashion",
-        image: "images/men-product-4.jpg",
+        image: "images/productImages/men-product-4.jpg",
         stock: 10,
     },
     {
@@ -36,7 +36,7 @@ const products = [
         name: "Shoes",
         price: 1000,
         category: "fashion",
-        image: "images/men-product-5.jpg",
+        image: "images/productImages/men-product-5.jpg",
         stock: 10,
     },
 
@@ -45,7 +45,7 @@ const products = [
         name: "Samsung Watch 5 pro",
         price: 13000,
         category: "electronics",
-        image: "images/electronic-product-1.webp",
+        image: "images/productImages/electronic-product-1.webp",
         stock: 10,
     },
     {
@@ -53,7 +53,7 @@ const products = [
         name: "Samsung GalaxyFit3",
         price: 13000,
         category: "electronics",
-        image: "images/electronic-product-2.webp",
+        image: "images/productImages/electronic-product-2.webp",
         stock: 10,
     },
     {
@@ -61,7 +61,7 @@ const products = [
         name: "HP 15, 13th Gen Intel Core i5-1335U",
         price: 80000,
         category: "electronics",
-        image: "images/electronic-product-3.webp",
+        image: "images/productImages/electronic-product-3.webp",
         stock: 10,
     },
     {
@@ -69,7 +69,7 @@ const products = [
         name: "Bose QuietComfort Ultra Bluetooth Headphones",
         price: 2500,
         category: "electronics",
-        image: "images/electronic-product-4.webp",
+        image: "images/productImages/electronic-product-4.webp",
         stock: 10,
     },
     {
@@ -77,7 +77,7 @@ const products = [
         name: "Amazon Echo Dot (5th Gen)",
         price: 3500,
         category: "electronics",
-        image: "images/electronic-product-5.webp",
+        image: "images/productImages/electronic-product-5.webp",
         stock: 10,
     },
 
@@ -86,7 +86,7 @@ const products = [
         name: "Articious Manifest Edition Planner with Bookmark",
         price: 300,
         category: "stationery",
-        image: "images/stationery-product-1.jpg",
+        image: "images/productImages/stationery-product-1.jpg",
         stock: 10,
     },
     {
@@ -94,7 +94,7 @@ const products = [
         name: "UCRAVO Multi-Functional Desk Organiser",
         price: 400,
         category: "stationery",
-        image: "images/stationery-product-2.jpg",
+        image: "images/productImages/stationery-product-2.jpg",
         stock: 10,
     },
     {
@@ -102,7 +102,7 @@ const products = [
         name: "Deskart Personalized Desktop Calendar with Pen Stand",
         price: 400,
         category: "stationery",
-        image: "images/stationery-product-3.jpg",
+        image: "images/productImages/stationery-product-3.jpg",
         stock: 10,
     },
     {
@@ -110,7 +110,7 @@ const products = [
         name: "Amazon Brand - Solimo Notebooks, Spiral-Bound",
         price: 500,
         category: "stationery",
-        image: "images/stationery-product-4.jpg",
+        image: "images/productImages/stationery-product-4.jpg",
         stock: 10,
     },
     {
@@ -118,7 +118,7 @@ const products = [
         name: "Pentonic Glitz 1.0 mm Multicolor Glitter Gel Pen",
         price: 200,
         category: "stationery",
-        image: "images/stationery-product-5.jpg",
+        image: "images/productImages/stationery-product-5.jpg",
         stock: 10,
     },
     
@@ -127,7 +127,7 @@ const products = [
         name: "KLOSIA Women's Rayon Printed Anarkali Kurta",
         price: 2000,
         category: "fashion",
-        image: "images/women-product-1.jpg",
+        image: "images/productImages/women-product-1.jpg",
         stock: 10,
     },
     {
@@ -135,7 +135,7 @@ const products = [
         name: "LITZO Women Shirt ",
         price: 500,
         category: "fashion",
-        image: "images/women-product-2.jpg",
+        image: "images/productImages/women-product-2.jpg",
         stock: 10,
     },
     {
@@ -143,7 +143,7 @@ const products = [
         name: "KOTTY Women Jeans",
         price: 700,
         category: "fashion",
-        image: "images/women-product-3.jpg",
+        image: "images/productImages/women-product-3.jpg",
         stock: 10,
     },
     {
@@ -151,7 +151,7 @@ const products = [
         name: "Women's medium-length coat by Fort ",
         price: 4000,
         category: "fashion",
-        image: "images/women-product-4.jpg",
+        image: "images/productImages/women-product-4.jpg",
         stock: 10,
     },
     {
@@ -159,7 +159,7 @@ const products = [
         name: "Allen Solly Women Sweatshirt",
         price: 600,
         category: "fashion",
-        image: "images/women-product-5.jpg",
+        image: "images/productImages/women-product-5.jpg",
         stock: 10,
     },
 ];

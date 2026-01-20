@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopKro - Cart</title>
 
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="styles/core.css">
+    <link rel="stylesheet" href="styles/pages/cartPages/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
@@ -17,20 +17,20 @@
         <div id="container">
             <div id="navbar">
                 <div id="logo">
-                    <img src="images/shopKro-logo.png" alt="logo">
+                    <a href="index.html">
+                        <img src="images/logoImages/shopKro-logo.png" alt="logo">
+                    </a>
                 </div>
 
                 <nav>
                     <ul id="navbarItems">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Account</a></li>
                     </ul>
                 </nav>
 
                 <a href="cart.html">
-                    <img src="images/cart.png" alt="Cart">
+                    <img src="images/uiImages/cart.png" alt="Cart" id="cartImage">
                     <span id="cartProductsCount">0</span>
                 </a>
             </div>
@@ -54,26 +54,27 @@
     <footer>
         <div id="footer">
             <div class="container">
-                <div class="row">
+                <div id="footerRow">
                     <div id="footerColumn1">
                         <h3>Download Our App</h3>
                         <p>Download App for Anroid mobile phone.</p>
                         <div id="appLogo">
-                            <img src="images/play-store.png" alt="">
-                            <img src="images/app-store.png" alt="">
+                            <img src="images/uiImages/play-store.png" alt="">
+                            <img src="images/uiImages/app-store.png" alt="">
                         </div>
                     </div>
                     <div id="footerColumn2">
-                        <img src="images/shopKro-logo.png" alt="">
+                        <a href="index.html">
+                            <img src="images/logoImages/shopKro-logo.png" alt="">
+                        </a>
                         <p>Our purpose is to simplify online shopping by offering trusted products, fair prices, and a seamless customer experience.</p>
                     </div>
                     <div id="footerColumn3">
                         <h3>Follow us</h3>
                         <ul id="followUs">
-                            <li>facebook</li>
-                            <li>Twitter</li>
-                            <li>Instagram</li>
-                            <li>YouTube</li>
+                            <li><a href="https://www.facebook.com/" target="_blank">facebook</a></li>
+                            <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                            <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
                         </ul>
                     </div>
                 </div>
@@ -85,11 +86,11 @@
     </footer>
 
     <script src="scripts/cart/updateCartCount.js"></script>
-    <script src="data/productsData.js"></script>
+    <script src="data/productsData/productsData.js"></script>
     <script src="scripts/cart/cartStorage.js"></script>
     <script src="scripts/cart/renderCart.js"></script>
     <script src="scripts/cart/cartOperations.js"></script>
-    <script src="scripts/cart/cartEvents.js"></script>
+    <script src="scripts/cart/checkoutButton.js"></script>
 
     <script>
         renderCart();

@@ -11,6 +11,7 @@ if(checkoutButtonElement)
     
         alert("Checkout successful.");
         cart = [];
+        localStorage.removeItem("CART_KEY");
 
         saveCart();
         renderCart();
