@@ -59,8 +59,12 @@
                         <h3>Download Our App</h3>
                         <p>Download App for Anroid mobile phone.</p>
                         <div id="appLogo">
-                            <img src="images/uiImages/play-store.png" alt="">
-                            <img src="images/uiImages/app-store.png" alt="">
+                            <a href="https://play.google.com/" target="_blank">
+                                <img src="images/uiImages/play-store.png" alt="">
+                            </a>
+                            <a href="https://www.apple.com/app-store/" target="_blank">
+                                <img src="images/uiImages/app-store.png" alt="">
+                            </a>
                         </div>
                     </div>
                     <div id="footerColumn2">
@@ -85,17 +89,13 @@
         </div>
     </footer>
 
-    <script src="scripts/cart/updateCartCount.js"></script>
     <script src="data/productsData/productsData.js"></script>
+    <script src="scripts/cart/updateCartCount.js"></script>
     <script src="scripts/cart/cartStorage.js"></script>
     <script src="scripts/cart/renderCart.js"></script>
     <script src="scripts/cart/cartOperations.js"></script>
     <script src="scripts/cart/checkoutButton.js"></script>
-
-    <script>
-        renderCart();
-        updateCartProductsCount();
-    </script>
+    
 </body>
 
 </html>

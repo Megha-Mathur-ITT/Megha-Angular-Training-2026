@@ -14,15 +14,15 @@ function searchProductByName(productList, searchedProduct)
     return productsFiltered;
 }
 
-function filterProductsByCategory(productList, category)
+function filterProductsByCategory(productList, selectedCategory)
 {
-    if(category == "all")
+    if(selectedCategory == "all")
     {
         return productList;
     }
     
     const productsFiltered = productList.filter((product) => (
-        product.category.toLowerCase() == category.toLowerCase()
+        product.category.toLowerCase() == selectedCategory.toLowerCase()
     ));
 
     return productsFiltered;

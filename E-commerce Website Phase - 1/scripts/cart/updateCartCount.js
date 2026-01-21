@@ -6,6 +6,7 @@ function updateCartProductsCount() {
         return;
     }
 
-    const totalProductsInCart = cart.reduce((totalProducts, product) => totalProducts + product.quantity, 0);
+    const totalProductsInCart = cart.reduce((totalProducts, product) => 
+        totalProducts + product.quantity, 0);
     cartProductCount.textContent = totalProductsInCart;
 }

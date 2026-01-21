@@ -59,6 +59,8 @@ function renderProducts(productList)
         const productCard = createProductCard(productList, product);
         productsListContainer.appendChild(productCard);
     }
+
+    updateCartProductsCount();
 }
 
 function updateVisibleProducts()

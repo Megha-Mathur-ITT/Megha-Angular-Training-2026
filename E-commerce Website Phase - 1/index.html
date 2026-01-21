@@ -7,7 +7,7 @@
     <title>ShopKro</title>
 
     <link rel="stylesheet" href="styles/core.css">
-    <link rel="stylesheet" href="styles/pages/homePage/home.css">
+    <link rel="stylesheet" href="styles/pages/homePages/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
@@ -116,8 +116,12 @@
                         <h3>Download Our App</h3>
                         <p>Download App for Anroid mobile phone.</p>
                         <div id="appLogo">
-                            <img src="images/uiImages/play-store.png" alt="">
-                            <img src="images/uiImages/app-store.png" alt="">
+                            <a href="https://play.google.com/" target="_blank">
+                                <img src="images/uiImages/play-store.png" alt="">
+                            </a>
+                            <a href="https://www.apple.com/app-store/" target="_blank">
+                                <img src="images/uiImages/app-store.png" alt="">
+                            </a>
                         </div>
                     </div>
                     <div id="footerColumn2">
@@ -142,12 +146,10 @@
         </div>
     </footer>
     
-    <script src="scripts/cart/updateCartCount.js"></script>
-    <script src="data/productsData/productsData.js"></script>
     <script src="scripts/cart/cartStorage.js"></script>
-    <script src="scripts/cart/cartOperations.js"></script>
-    <script src="scripts/cart/renderCart.js"></script>
-    <script src="scripts/cart/checkoutButton.js"></script>
+    <script src="scripts/cart/updateCartCount.js"></script>
+    <script src="scripts/home/home.js"></script>
+    
 </body>
 
 </html>
