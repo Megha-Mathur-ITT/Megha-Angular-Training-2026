@@ -1,0 +1,50 @@
+#navbar #logo img
+{
+    width: 125px;
+}
+
+#navbar
+{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#navbar nav
+{
+    text-align: right;
+    margin: auto;
+}
+
+#navbar nav #navbarItems
+{
+    list-style: none;
+}
+
+#navbarItems li
+{
+    display: inline-block;
+    margin: 20px;
+}
+
+#navbar img
+{
+    cursor: pointer;
+}
+
+li a
+{
+    text-decoration: none;
+}
+
+#container
+{
+    max-width: 1300px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#navbar #cartImage
+{
+    width: 30px;
+}
