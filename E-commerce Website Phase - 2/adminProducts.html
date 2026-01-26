@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopKro</title>
+
+    <link rel="stylesheet" href="styles/core.css">
+    <link rel="stylesheet" href="styles/pages/productPages/userProducts.css">
+    <link rel="stylesheet" href="styles/pages/productPages/adminProducts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body id="adminProductsPage">
+    <header class="header">
+        <div id="container">
+            <div id="navbar">
+                <nav>
+                    <ul id="navbarItems">
+                        <li><a href="adminProducts.html"></a></li>
+                    </ul>
+                </nav>
+
+                <img src="./src/images/uiImages/userImage.jpg" alt="User" id="userImage">                
+                <div id="userDropdown" class="user-dropdown hidden">
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="productSection">
+            <h2>Admin Products</h2>
+            <div id="productControls">
+                <input type="search" id="searchProduct" placeholder="Search products">
+                <select name="filter" id="categoryFilter">
+                </select>
+            </div>
+
+            <div id="spinner" class="spinner hidden"></div>
+            
+            <div id="productList"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer">
+            <div class="container">
+                <div id="footerRow">
+                    <div id="footerColumn1">
+                        <h3>Download Our App</h3>
+                        <p>Download App for Anroid mobile phone.</p>
+                        <div id="appLogo">
+                            <a href="https://play.google.com/" target="_blank">
+                                <img src="./src/images/uiImages/play-store.png" alt="">
+                            </a>
+                            <a href="https://www.apple.com/app-store/" target="_blank">
+                                <img src="./src/images/uiImages/app-store.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div id="footerColumn2">
+                        <p>Our purpose is to simplify online shopping by offering trusted products, fair prices, and a seamless customer experience.</p>
+                    </div>
+                    <div id="footerColumn3">
+                        <h3>Follow us</h3>
+                        <ul id="followUs">
+                            <li><a href="https://www.facebook.com/" target="_blank">facebook</a></li>
+                            <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                            <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr>
+                <p id="copyright">Copyright 2026 - Megha Mathur</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./src/UiLogics/header.js"></script>
+    <script type="module">
+        import "./src//main.js";
+    </script>
+
+</body>
+
+</html>
