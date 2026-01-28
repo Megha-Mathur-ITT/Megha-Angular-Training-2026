@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKro - Cart</title>
+
+    <link rel="stylesheet" href="styles/core.css">
+    <link rel="stylesheet" href="styles/pages/cartPages/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div id="container">
+            <div id="navbar">
+                <div id="logo">
+                    <a href="index.html">
+                        <img src="../src/images/logoImages/shopKro-logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <div id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <nav>
+                    <ul id="navbarItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                    </ul>
+                </nav>
+
+                <a href="cart.html">
+                    <img src="../src/images/uiImages/cart.png" alt="Cart" id="cartImage">
+                    <span id="cartProductsCount">0</span>
+                </a>
+
+                <img src="../src/images/uiImages/userImage.jpg" alt="User" id="userImage">
+                <div id="userDropdown" class="user-dropdown hidden">
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="cartSection">
+            <h2>Your Shopping Cart</h2>
+            <div id="cartContainer">
+
+            </div>
+
+            <div id="cartSummary">
+                <h3>Total: &#8377<span id="cartTotal">0</span></h3>
+
+                <div id="checkoutWrapper">
+                    <button id="checkoutButton">Checkout</button>
+                    <div id="checkoutSpinner" class="spinner hidden"></div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer">
+            <div class="container">
+                <div id="footerRow">
+                    <div id="footerColumn1">
+                        <h3>Download Our App</h3>
+                        <p>Download App for Anroid mobile phone.</p>
+                        <div id="appLogo">
+                            <a href="https://play.google.com/" target="_blank">
+                                <img src="../src/images/uiImages/play-store.png" alt="">
+                            </a>
+                            <a href="https://www.apple.com/app-store/" target="_blank">
+                                <img src="../src/images/uiImages/app-store.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div id="footerColumn2">
+                        <a href="index.html">
+                            <img src="../src/images/logoImages/shopKro-logo.png" alt="">
+                        </a>
+                        <p>Our purpose is to simplify online shopping by offering trusted products, fair prices, and a seamless customer experience.</p>
+                    </div>
+                    <div id="footerColumn3">
+                        <h3>Follow us</h3>
+                        <ul id="followUs">
+                            <li><a href="https://www.facebook.com/" target="_blank">facebook</a></li>
+                            <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                            <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr>
+                <p id="copyright">Copyright 2026 - Megha Mathur</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../src/Ui/ShellUI/header.js"></script>
+    <script src="../src/main.js" type="module"></script>
+</body>
+
+</html>
