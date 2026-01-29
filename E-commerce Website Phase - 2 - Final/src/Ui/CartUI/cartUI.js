@@ -1,6 +1,9 @@
 import { updateCartProductsCount } from "../../services/CartService/updateCartProductsCountUI.js";
 import AuthenticationError from "../../errors/AuthenticationError.js";
 import EmptyCartError from "../../errors/EmptyCartError.js";
+import AuthenticationService from "../../services/AuthenticationService/AuthenticationService.js";
+
+const authenticationService = new AuthenticationService();
 
 function updateTotal()
 {
@@ -90,6 +93,14 @@ export async function renderCart()
 
     if(cartContainerElement == null || cartTotalElement == null)
     {
+        return;
+    }
+
+    if(!authenticationService.isLoggedIn() || authenticationService.isAdmin())
+    {
+        cartContainerElement.innerHTML = "<p>Please login to view your cart.</p>";
+        cartTotalElement.innerHTML = "0";
+        updateCartProductsCount();
         return;
     }
 

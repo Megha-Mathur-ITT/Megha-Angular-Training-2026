@@ -43,7 +43,7 @@ class AuthenticationService
         const users = await this.loadUsers();
 
         const matchedUser = users.find((user) => (
-            user.email === email.toLowerCase() &&
+            user.email === email &&
             user.password === password 
         ));
 

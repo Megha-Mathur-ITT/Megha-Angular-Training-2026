@@ -1,36 +1,30 @@
 import AuthenticationError from "/src/errors/AuthenticationError.js";
 import OutOfStockError from "/src/errors/OutOfStockError.js";
+
 const CART_KEY = "shopkro_cart";
 
-class CartService
-{
-    constructor(getProductsService, authenticationService)
-    {
+class CartService {
+    constructor(getProductsService, authenticationService) {
         this.getProducts = getProductsService;
         this.authenticationService = authenticationService;
         this.cart = this.loadCart();
     }
 
-    loadCart()
-    {
+    loadCart() {
         const stored = localStorage.getItem(CART_KEY);
         return stored ? JSON.parse(stored) : [];
     }
 
-    saveCart()
-    {
+    saveCart() {
         localStorage.setItem(CART_KEY, JSON.stringify(this.cart));
     }
 
-    getCart()
-    {
+    getCart() {
         return this.cart;
     }
 
-    getTotalQuantity()
-    {
-        if (!this.authenticationService.isLoggedIn()) 
-        {
+    getTotalQuantity() {
+        if (!this.authenticationService.isLoggedIn()) {
             return 0;
         }
 
@@ -39,16 +33,14 @@ class CartService
         ), 0);
     }
 
-    async getAvailableStock(productId)
-    {
+    async getAvailableStock(productId) {
         const products = await this.getProducts();
         const product = products.find(product => product.id === productId);
 
-        if(!product)
-        {
+        if (!product) {
             return 0;
         }
-        
+
         const cartProduct = this.cart.find((cartProduct) => (
             productId === cartProduct.id
         ));
@@ -56,108 +48,123 @@ class CartService
         return (cartProduct ? product.stock - cartProduct.quantity : product.stock);
     }
 
-    async addToCart(product)
-    {
-        this.ensureLoggedIn();
+    async addToCart(product) {
+        try {
+            this.ensureLoggedIn();
 
-        const availableStock = await this.getAvailableStock(product.id);
-        
-        if(availableStock <= 0)
-        {
-            throw new OutOfStockError("Product is out of stock.");
-        }
+            const availableStock = await this.getAvailableStock(product.id);
 
-        const existingProduct = this.cart.find((cartProduct) => 
-            (product.id == cartProduct.id)
-        );
-        
-        if(existingProduct)
-        {
-            existingProduct.quantity++;
+            if (availableStock <= 0) {
+                throw new OutOfStockError("Product is out of stock.");
+            }
+
+            const existingProduct = this.cart.find((cartProduct) =>
+                (product.id == cartProduct.id)
+            );
+
+            if (existingProduct) {
+                existingProduct.quantity++;
+            }
+            else {
+                this.cart.push({ ...product, quantity: 1 });
+            }
+
+            this.saveCart();
         }
-        else
-        {
-            this.cart.push({...product, quantity: 1});
+        catch (error) {
+            alert(error.message);
+            return;
         }
-                
-        this.saveCart();
     }
 
-    removeProduct(productId)
-    {
-        this.ensureLoggedIn();
+    removeProduct(productId) {
+        try {
+            this.ensureLoggedIn();
+        }
+        catch (error) {
+            alert(error.message);
+            return;
+        }
 
-        this.cart = this.cart.filter((cartProduct) => 
+        this.cart = this.cart.filter((cartProduct) =>
             (cartProduct.id !== productId)
         );
 
         this.saveCart();
     }
 
-    async increaseQuantity(productId)
-    {
-        this.ensureLoggedIn();
+    async increaseQuantity(productId) {
+        try {
+            this.ensureLoggedIn();
 
-        const availableStock = await this.getAvailableStock(productId);
+            const availableStock = await this.getAvailableStock(productId);
 
-        if(availableStock <= 0)
-        {
-            throw new OutOfStockError("Product is out of stock.");
+            if (availableStock <= 0) {
+                throw new OutOfStockError("Product is out of stock.");
+            }
+
+            const product = this.cart.find((cartProduct) =>
+                (productId == cartProduct.id)
+            );
+
+            if (!product) {
+                return;
+            }
+
+            product.quantity++;
+            this.saveCart();
         }
-
-        const product = this.cart.find((cartProduct) => 
-            (productId == cartProduct.id)
-        );
-
-        if(!product)
-        {
+        catch (error) {
+            alert(error.message);
             return;
         }
-        
-        product.quantity++;
-        this.saveCart();
     }
-    
-    decreaseQuantity(productId)
-    {
-        this.ensureLoggedIn();
 
-        const product = this.cart.find((cartProduct) => 
-            (productId === cartProduct.id)
-        );
+    decreaseQuantity(productId) {
+        try {
+            this.ensureLoggedIn();
 
-        if(!product)
-        {
+            const product = this.cart.find((cartProduct) =>
+                (productId === cartProduct.id)
+            );
+
+            if (!product) {
+                return;
+            }
+
+            product.quantity--;
+
+            if (product.quantity <= 0) {
+                this.removeProduct(productId);
+            }
+
+            this.saveCart();
+        }
+        catch (error) {
+            alert(error.message);
             return;
         }
-
-        product.quantity--;
-
-        if(product.quantity <= 0)
-        {
-            this.removeProduct(productId);
-        }
-
-        this.saveCart();
     }
 
-    clearCart()
-    {
-        this.ensureLoggedIn();
+    clearCart() {
+        try {
+            this.ensureLoggedIn();
 
-        if(this.cart.length === 0)
-        {
-            throw new EmptyCartError("Cart is empty. Add products first.");
+            if (this.cart.length === 0) {
+                throw new EmptyCartError("Cart is empty. Add products first.");
+            }
+
+            this.cart = [];
+            localStorage.removeItem(CART_KEY);
         }
-
-        this.cart = [];
-        localStorage.removeItem(CART_KEY);
+        catch (error) {
+            alert(error.message);
+            return;
+        }
     }
 
-    ensureLoggedIn()
-    {
-        if(!this.authenticationService.isLoggedIn())
-        {
+    ensureLoggedIn() {
+        if (!this.authenticationService.isLoggedIn()) {
             throw new AuthenticationError("Please login first.");
         }
     }

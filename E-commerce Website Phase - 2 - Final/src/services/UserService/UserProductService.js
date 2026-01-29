@@ -24,18 +24,30 @@ class UserProductService extends ProductService {
             return productList;
         }
     
-        const productsFiltered = productList.filter((product) => (
+        let productsFiltered = productList.filter((product) => (
             product.category.toLowerCase() === selectedCategory.toLowerCase()
         ));
 
         return productsFiltered;
     }
 
+    getProductCategories(productList)
+    {
+        const categoriesSet = new Set(["all"]);
+
+        for(let product of productList)
+        {
+            categoriesSet.add(product.category.toLowerCase());
+        }        
+
+        return Array.from(categoriesSet);
+    }
+
     getCartQuantity(productId)
     {   
         const storedCart = localStorage.getItem("shopKro_cart");
         const cart = storedCart ? JSON.parse(storedCart) : [];
-        const cartProduct = cart.find((cartProduct) => (cartProduct && productId == cartProduct.id));
+        const cartProduct = cart.find((cartProduct) => (productId == cartProduct?.id));
 
         if(cartProduct && cartProduct.quantity > 0)
         {
@@ -43,30 +55,6 @@ class UserProductService extends ProductService {
         }
 
         return 0;
-    }
-
-    getProductCategories(productList)
-    {
-        const categories = ["all"];
-
-        for(let product of productList)
-        {
-            const category = product.category.toLowerCase();
-
-            if(categories.includes(category))
-            {
-                continue;
-            }
-
-            categories.push(category);
-        }        
-
-        return categories;
-    }
-
-    isUserLoggedIn()
-    {
-        return !!localStorage.getItem("loggedInUser");
     }
 }
 

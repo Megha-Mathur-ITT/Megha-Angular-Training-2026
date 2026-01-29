@@ -40,18 +40,25 @@ export function initializeUserDropdown(authenticationService) {
 
     function showLoginForm() {
         userDropdown.innerHTML = `
-            <input id="loginEmail" placeholder="Email" type="email">
-            <input id="loginPassword" type="password" placeholder="Password">
-            <button id="submitLogin">Login</button>
+            <form id="loginForm">
+                <input id="loginEmail" placeholder="Email" type="email" required>
+                <input id="loginPassword" type="password" placeholder="Password" required>
+                <button id="submitLogin" type="submit">Login</button>
+            </form>
         `;
 
-        document.getElementById("submitLogin")
-            ?.addEventListener("click", handleLogin);
+        document.getElementById("loginForm")
+            ?.addEventListener("submit", handleLogin);
     }
 
-    async function handleLogin() {
+    async function handleLogin(e) {
+        e.preventDefault();
+
         try 
         {
+            const loginEmail = document.getElementById("loginEmail");
+            const loginPassword = document.getElementById("loginPassword");
+            
             const user = await authenticationService.login(
                 loginEmail.value,
                 loginPassword.value,

@@ -1,6 +1,6 @@
 import UserProductService from "../UserService/UserProductService.js";
-import AuthenticationService from "../AuthenticationService/AuthenticationService.js";
 import InvalidQuantityError from "../../errors/InvalidQuantityError.js";
+import AuthenticationService from "../AuthenticationService/AuthenticationService.js";
 const authenticationService = new AuthenticationService();
 
 class AdminProductServices extends UserProductService
@@ -56,30 +56,28 @@ class AdminProductServices extends UserProductService
             }
 
             this.validateProduct(updatedData);
-            await this.getAllProducts();
+            await this.getAllProducts();    
+            this.buildProductMap();
+                
+            const existingProduct = this.productMap.get(productId);
+
+            if(!existingProduct)
+            {
+                return new Error("Product not found.");
+            }
+
+            const updatedProduct = {
+                ...existingProduct,
+                ...updatedData
+            };
+
+            this.productMap.set(productId, updatedProduct);
+            this.products = Array.from(this.productMap.values());
             
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    const productIndex = this.products.findIndex((product) => (
-                        product.id === productId
-                    ));
-
-                    if(productIndex === -1)
-                    {
-                        return reject(new Error("Product not found."));
-                    }
-
-                    this.products[productIndex] = {
-                        ...this.products[productIndex], 
-                        ...updatedData
-                    };
-
-                    this.saveProducts();
-                    this.refreshProductsFromStorage(); 
+            this.saveProducts();
+            this.refreshProductsFromStorage();
                     
-                    resolve(this.products[productIndex]);
-                }, 500);
-            });
+            return updatedProduct;
         }
         catch(error)
         {
@@ -96,9 +94,16 @@ class AdminProductServices extends UserProductService
             }
 
             await this.getAllProducts();
-            this.products = this.products.filter((product) => (
-                                productId !== product.id
-                            ));
+            this.buildProductMap();
+            
+            const isDeleted = this.productMap.delete(productId);
+
+            if(!isDeleted)
+            {
+                throw new Error("Product not found.");
+            }
+
+            this.products = Array.from(this.productMap.values());
 
             this.saveProducts();
             this.refreshProductsFromStorage();
@@ -113,6 +118,12 @@ class AdminProductServices extends UserProductService
 
     refreshProductsFromStorage() {
         this.products = JSON.parse(localStorage.getItem("shopkro_products")) || [];
+    }
+
+    buildProductMap() {
+        this.productMap = new Map(this.products.map(product => 
+            [product.id, product]
+        ));
     }
 }
 

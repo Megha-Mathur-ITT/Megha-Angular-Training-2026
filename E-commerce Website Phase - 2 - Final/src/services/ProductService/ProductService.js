@@ -22,7 +22,7 @@ class ProductService
                 spinner.classList.remove("hidden"); 
                 await new Promise(resolve => setTimeout(resolve, 1000));
             }
-
+            
             const storedProducts = localStorage.getItem(this.PRODUCT_STORAGE_KEY);
 
             if(storedProducts)
@@ -31,13 +31,11 @@ class ProductService
                 return this.products;
             }
             
-            const response = await fetch("./src/data/products.json");
-            console.log("Fetched product: ", response);
+            const response = await fetch("../../src/data/products.json");
 
             if(!response.ok)
             {
                 throw new Error("Unable to fetch products");
-                return; 
             }
 
             this.products = await response.json();  

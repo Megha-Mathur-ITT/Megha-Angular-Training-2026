@@ -27,6 +27,14 @@
     display: inline-block;
 }
 
+#navbarItems li a{
+    color: rgb(248, 116, 8);
+}
+
+#navbarItems li a:hover{
+    color: rgb(224, 148, 86);
+}
+
 #navbar img {
     cursor: pointer;
     width: 30px;
