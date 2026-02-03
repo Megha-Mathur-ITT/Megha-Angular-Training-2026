@@ -1,0 +1,180 @@
+#navbar #logo img {
+    width: 125px;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#navbar nav {
+    text-align: right;
+}
+
+#navbar nav #navbarItems {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+#navbarItems li {
+    display: inline-block;
+}
+
+#navbarItems li a{
+    color: rgb(248, 116, 8);
+}
+
+#navbarItems li a:hover{
+    color: rgb(224, 148, 86);
+}
+
+#navbar img {
+    cursor: pointer;
+    width: 30px;
+    margin-right: 10px;
+}
+
+li a {
+    text-decoration: none;
+    color: #000;
+}
+
+#navbar #cartImage {
+    width: 30px;
+    margin-right: 10px;
+}
+
+#navbar #userImage {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.user-dropdown.hidden {
+    display: none;
+}
+
+.user-dropdown button,
+.user-dropdown input,
+.user-dropdown select {
+    width: 100%;
+    padding: 6-8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+#hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#hamburger span {
+    display: block;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    width: 220px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    padding: 15px;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+.user-dropdown p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #333;
+}
+
+.user-dropdown input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.user-dropdown button {
+    width: 100%;
+    padding: 9px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff523b;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.user-dropdown button:hover {
+    background-color: #e14b36;
+}
+
+@media screen and (max-width: 768px) {
+
+    #navbar {
+        position: relative;
+    }
+
+    #navbar nav {
+        display: none;
+        position: absolute;
+        top: 60px;           
+        left: 0;
+        width: 100%;
+        background: white;
+        border-top: 1px solid #ddd;
+        z-index: 99;
+    }
+
+    #navbar nav.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    #navbar nav #navbarItems {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #hamburger {
+        display: flex;
+    }
+}
+
