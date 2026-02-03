@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative To-Do List</title>
+    <link rel="stylesheet" href="./public/styles/style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>My To-Do List</h1>
+
+        <div class="remove-taskList-controls">
+            <select id="removeFilterSelect">
+                <option value="all">Remove All</option>
+                <option value="pending">Remove Pending Tasks</option>
+                <option value="done">Remove Completed Tasks</option>
+                <option value="high">Remove High Priority Tasks</option>
+                <option value="low">Remove Low Priority Tasks</option>
+            </select>
+
+            <button id="removeTasksButton">Remove</button>
+        </div>
+
+    </header>
+
+    <main class="main-section">
+        <section class="addbNewTaskContainer">
+            <input id="taskInput" type="text" placeholder="Write your next task..." />
+
+            <select id="prioritySelect">
+                <option value="low" selected>Low</option>
+                <option value="high">High</option>
+            </select>
+
+            <button id="addNewTaskButton">Add new task</button>
+        </section>
+
+        <section class="todo-list">
+            <ul id="taskList-container"></ul>
+        </section>
+    </main>
+
+    <script type="module" src="./dist/main.js"></script>
+</body>
+
+</html>
