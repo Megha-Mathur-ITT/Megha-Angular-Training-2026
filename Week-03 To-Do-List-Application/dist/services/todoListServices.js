@@ -4,24 +4,13 @@ export default class TodoServices {
         this.tasksList = [];
         this.tasksList = storage.getTodoList();
     }
-    removeTasksByFilter(filter) {
-        switch (filter) {
-            case "all":
-                this.tasksList = [];
-                break;
-            case "pending":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.status !== "pending");
-                break;
-            case "done":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.status !== "done");
-                break;
-            case "high":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.priority !== "high");
-                break;
-            case "low":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.priority !== "low");
-                break;
-        }
+    removeTasksByFilters(statusFilter, priorityFilter) {
+        this.tasksList = this.tasksList.filter((currentTask) => {
+            const statusMatch = statusFilter === "all" ? true : currentTask.status === statusFilter;
+            const priorityMatch = priorityFilter === "all" ? true : currentTask.priority === priorityFilter;
+            const shouldRemove = statusMatch && priorityMatch;
+            return !shouldRemove;
+        });
         storage.saveTodoList(this.tasksList);
     }
     toggleTaskStatus(taskId) {
@@ -60,21 +49,14 @@ export default class TodoServices {
         this.tasksList = this.tasksList.filter((currentTask) => currentTask.taskId !== taskId);
         storage.saveTodoList(this.tasksList);
     }
-    updatePriority(taskId, priority) {
-        const task = this.tasksList.find((t) => t.taskId === taskId);
-        if (!task) {
-            return;
-        }
-        task.priority = priority;
-        storage.saveTodoList(this.tasksList);
-    }
     toggleTaskPriority(taskId) {
-        const task = storage.getTodoList().find((t) => t.taskId === taskId);
+        const task = this.tasksList.find((currentTask) => currentTask.taskId === taskId);
         if (!task) {
             return;
         }
         const newPriority = task.priority === "high" ? "low" : "high";
-        this.updatePriority(taskId, newPriority);
+        task.priority = newPriority;
+        storage.saveTodoList(this.tasksList);
     }
 }
 //# sourceMappingURL=todoListServices.js.map

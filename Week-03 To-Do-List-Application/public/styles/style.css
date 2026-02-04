@@ -9,7 +9,6 @@ body {
   background: linear-gradient(135deg, #f6f8ff, #eaf2ff);
   min-height: 100vh;
   padding: 30px 16px;
-  /* display: flex; */
   justify-content: center;
 }
 
@@ -25,17 +24,18 @@ header h1 {
   color: #1f1f1f;
 }
 
-.remove-taskLists-controls {
+#remove-controls {
   display: flex;
-  gap: 10px;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-#removeFilterSelect {
-  padding: 8px 12px;
+#removeStatusSelect, #removePrioritySelect {
+  padding: 8px 12px; 
   border-radius: 10px;
   border: 1px solid #ddd;
-  outline: none;
   cursor: pointer;
   font-size: 14px;
 }
@@ -60,14 +60,11 @@ header h1 {
   max-width: 680px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
   border-radius: 22px;  
-  padding: 22px;          
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 22px; 
 }
 
-.addbNewTaskContainer {
+#addbNewTaskContainer {
   display: flex;
   gap: 12px;
   margin-bottom: 18px;
@@ -78,7 +75,7 @@ header h1 {
   padding: 13px 14px;
   border-radius: 14px;
   border: 2px solid #e6e6ff;
-  outline: none;
+  outline: none;  
   font-size: 1rem;
   transition: 0.2s ease;
 }
@@ -118,19 +115,12 @@ header h1 {
   font-weight: 700;
   background: white;
   cursor: pointer;
-  transition: 0.2s ease;
   min-width: 110px;
 }
 
 #prioritySelect:focus {
   border-color: #7b61ff;
   box-shadow: 0 0 0 4px rgba(123, 97, 255, 0.15);
-}
-
-.todo-list ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
 }
 
 .task-container {
@@ -162,7 +152,6 @@ header h1 {
   font-size: 1.05rem;
   font-weight: 700;
   color: #222;
-  word-break: break-word;
 }
 
 .task-date {
@@ -177,8 +166,6 @@ header h1 {
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
 }
 
 .task-priority.high {
@@ -191,11 +178,6 @@ header h1 {
   background: #fff2c8;
   border: 1px solid #f7d770;
   color: #fac000;
-}
-
-.priority-button {
-  background: #f1f1ff;
-  border: 1px solid #d8d8ff;
 }
 
 .priority-button.high {
@@ -221,21 +203,16 @@ header h1 {
   border-radius: 12px;
   cursor: pointer;
   font-size: 0.9rem;
-  font-weight: 700;
-  transition: transform 0.15s ease, filter 0.2s ease;
+  font-weight: 700; 
+  transition: transform 0.15s ease;
 }
 
 .actions-container button:hover {
   transform: scale(1.05);
-  filter: brightness(0.97);
 }
 
-.actions-container button:active {
-  transform: scale(0.98);
-}
-
-.toggle-button {
-  background: #d7ffe0;
+.status-toggle-button {
+  background: #aaffbe;
 }
 
 .edit-button {
@@ -243,12 +220,75 @@ header h1 {
 }
 
 .delete-button {
-  background: #ff7b7b;
+  background: #fc6060;
+}
+
+.editFormContainer {
+  position: fixed;
+  inset: 0; 
+  background: rgba(73, 73, 73, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.edit-form {
+  width: 100%;
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid #eef0ff;
+  animation: popupScale 0.18s ease;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 2px solid #e6e6ff;
+  outline: none;
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+
+.edit-input:focus {
+  border-color: #7b61ff;
+  box-shadow: 0 0 0 4px rgba(123, 97, 255, 0.15);
+}
+
+.edit-form .update-button,
+.edit-form .cancel-button {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.edit-form .update-button {
+  background: linear-gradient(135deg, #7b61ff, #5a3dff);
   color: white;
 }
 
+.edit-form .cancel-button {
+  background: #f8eded;
+  color: #2e2e2e;
+}
+
+.edit-form .update-button:hover,
+.edit-form .cancel-button:hover {
+  opacity: 0.9;
+}
+
 @media (max-width: 520px) {
-  .addbNewTaskContainer {
+  #addbNewTaskContainer {
     flex-direction: column;
   }
 
@@ -269,5 +309,16 @@ header h1 {
   .actions-container {
     width: 100%;
     justify-content: space-between;
+  }
+}
+
+@keyframes popupScale {
+  from {
+    transform: scale(0.96);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }

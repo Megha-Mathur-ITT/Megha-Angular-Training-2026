@@ -5,13 +5,14 @@ import TodoListInputController from "./ui/todoListInputController.js";
 const service = new TodoServices();
 const todoListUi = new TodoListRenderer();
 const prioritySelect = document.getElementById("prioritySelect");
-const removeFilterSelect = document.getElementById("removeFilterSelect");
+const removePrioritySelect = document.getElementById("removePrioritySelect");
+const removeStatusSelect = document.getElementById("removeStatusSelect");
 const removeTasksButton = document.getElementById("removeTasksButton");
+if (!removeStatusSelect || !removePrioritySelect || !removeTasksButton) {
+    throw new Error("Remove filter controls not found");
+}
 if (!prioritySelect) {
     throw new Error("Priority select not found");
-}
-if (!removeFilterSelect || !removeTasksButton) {
-    throw new Error("Remove controls not found");
 }
 function refreshUI() {
     todoListUi.renderTasks(storage.getTodoList(), {
@@ -40,8 +41,9 @@ new TodoListInputController({
     }
 });
 removeTasksButton.addEventListener("click", () => {
-    const selectedFilter = removeFilterSelect.value;
-    service.removeTasksByFilter(selectedFilter);
+    const statusFilter = removeStatusSelect.value;
+    const priorityFilter = removePrioritySelect.value;
+    service.removeTasksByFilters(statusFilter, priorityFilter);
     refreshUI();
 });
 refreshUI();

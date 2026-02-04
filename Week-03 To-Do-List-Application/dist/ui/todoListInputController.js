@@ -26,7 +26,6 @@ export default class TodoListInputController {
         }
         handlers.OnAddNewTask(title);
         this.taskInputElement.value = "";
-        this.taskInputElement.focus();
     }
 }
 //# sourceMappingURL=todoListInputController.js.map

@@ -12,13 +12,17 @@
     <header>
         <h1>My To-Do List</h1>
 
-        <div class="remove-taskList-controls">
-            <select id="removeFilterSelect">
-                <option value="all">Remove All</option>
-                <option value="pending">Remove Pending Tasks</option>
-                <option value="done">Remove Completed Tasks</option>
-                <option value="high">Remove High Priority Tasks</option>
-                <option value="low">Remove Low Priority Tasks</option>
+        <div id="remove-controls">
+            <select id="removeStatusSelect">
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="done">Done</option>
+            </select>
+
+            <select id="removePrioritySelect">
+                <option value="all">All Priority</option>
+                <option value="high">High</option>
+                <option value="low">Low</option>
             </select>
 
             <button id="removeTasksButton">Remove</button>
@@ -27,7 +31,7 @@
     </header>
 
     <main class="main-section">
-        <section class="addbNewTaskContainer">
+        <section id="addbNewTaskContainer">
             <input id="taskInput" type="text" placeholder="Write your next task..." />
 
             <select id="prioritySelect">

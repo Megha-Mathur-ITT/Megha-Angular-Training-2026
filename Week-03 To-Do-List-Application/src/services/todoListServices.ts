@@ -1,6 +1,6 @@
 import type { Task } from "../types/todoListTypes.js"
 import { storage } from "../utils/storage.js";
-import type { RemoveFilter } from "../types/todoListTypes.js";
+import type { RemoveStatusFilter, RemovePriorityFilter, TaskPriority } from "../types/todoListTypes.js";
 
 export default class TodoServices {
     tasksList: Task[] = [];
@@ -9,28 +9,15 @@ export default class TodoServices {
         this.tasksList = storage.getTodoList();
     }
 
-    removeTasksByFilter(filter: RemoveFilter): void {
-        switch (filter) {
-            case "all":
-                this.tasksList = [];
-                break;
+    removeTasksByFilters(statusFilter: RemoveStatusFilter, priorityFilter: RemovePriorityFilter): void {
+        this.tasksList = this.tasksList.filter((currentTask) => {
+            const statusMatch = statusFilter === "all" ? true : currentTask.status === statusFilter;
+            const priorityMatch = priorityFilter === "all" ? true : currentTask.priority === priorityFilter;
 
-            case "pending":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.status !== "pending");
-                break;
+            const shouldRemove = statusMatch && priorityMatch;
 
-            case "done":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.status !== "done");
-                break;
-
-            case "high":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.priority !== "high");
-                break;
-
-            case "low":
-                this.tasksList = this.tasksList.filter((currentTask) => currentTask.priority !== "low");
-                break;
-        }
+            return !shouldRemove;
+        });
 
         storage.saveTodoList(this.tasksList);
     }
@@ -46,7 +33,7 @@ export default class TodoServices {
         storage.saveTodoList(this.tasksList);
     }
 
-    addTask(title: string, taskPriority: "high" | "low"): void {
+    addTask(title: string, taskPriority: TaskPriority): void {
         const trimmedTitle = title.trim();
 
         if (!trimmedTitle) {
@@ -82,25 +69,15 @@ export default class TodoServices {
         storage.saveTodoList(this.tasksList);
     }
 
-    updatePriority(taskId: string, priority: "high" | "low"): void {
-        const task = this.tasksList.find((t) => t.taskId === taskId);
-
-        if (!task) {
-            return;
-        }
-
-        task.priority = priority;
-        storage.saveTodoList(this.tasksList);
-    }
-
     toggleTaskPriority(taskId: string): void {
-        const task = storage.getTodoList().find((t) => t.taskId === taskId);
+        const task = this.tasksList.find((currentTask) => currentTask.taskId === taskId);
 
         if (!task) {
             return;
         }
 
         const newPriority = task.priority === "high" ? "low" : "high";
-        this.updatePriority(taskId, newPriority);
+        task.priority = newPriority;
+        storage.saveTodoList(this.tasksList);
     }
 }
