@@ -1,0 +1,328 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f6f8ff, #eaf2ff);
+  min-height: 100vh;
+  padding: 30px 16px;
+  justify-content: center;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #1f1f1f;
+}
+
+.todo-list #taskList-container {
+  list-style: none;
+}
+
+#remove-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#removeStatusSelect, #removePrioritySelect {
+  padding: 8px 12px; 
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#removeTasksButton {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  background: black;
+  color: white;
+}
+
+#removeTasksButton:hover {
+  opacity: 0.85;
+}
+
+.main-section {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 22px;  
+  padding: 22px; 
+}
+
+#addbNewTaskContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 2px solid #e6e6ff;
+  outline: none;  
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+
+#taskInput:focus {
+  border-color: #7b61ff;
+  box-shadow: 0 0 0 4px rgba(123, 97, 255, 0.15);
+}
+
+#addNewTaskButton {
+  padding: 13px 16px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7b61ff, #5a3dff);
+  color: white;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+#addNewTaskButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(90, 61, 255, 0.25);
+}
+
+#addNewTaskButton:active {
+  transform: translateY(0px);
+}
+
+#prioritySelect {
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 2px solid #e6e6ff;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 700;
+  background: white;
+  cursor: pointer;
+  min-width: 110px;
+}
+
+#prioritySelect:focus {
+  border-color: #7b61ff;
+  box-shadow: 0 0 0 4px rgba(123, 97, 255, 0.15);
+}
+
+.task-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 14px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  border: 1px solid #eef0ff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.task-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+}
+
+.task-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 70%;
+}
+
+.task-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.task-date {
+  font-size: 0.82rem;
+  color: #777;
+}
+
+.task-priority {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.task-priority.high {
+  background: #ffe2e2;
+  color: #b30000;
+  border: 1px solid #ffb6b6;
+}
+
+.task-priority.low {
+  background: #fff2c8;
+  border: 1px solid #f7d770;
+  color: #fac000;
+}
+
+.priority-button.high {
+  background: #ffe2e2;
+  border: 1px solid #ffb6b6;
+  color: #b30000;
+}
+
+.priority-button.low {
+  background: #fff2c8;
+  border: 1px solid #f7d770;
+  color: #fac000;
+}
+
+.actions-container {
+  display: flex;
+  gap: 10px;
+}
+
+.actions-container button {
+  padding: 8px 11px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700; 
+  transition: transform 0.15s ease;
+}
+
+.actions-container button:hover {
+  transform: scale(1.05);
+}
+
+.status-toggle-button {
+  background: #aaffbe;
+}
+
+.edit-button {
+  background: #ffe6a6;
+}
+
+.delete-button {
+  background: #fc6060;
+}
+
+.editFormContainer {
+  position: fixed;
+  inset: 0; 
+  background: rgba(73, 73, 73, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.edit-form {
+  width: 100%;
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid #eef0ff;
+  animation: popupScale 0.18s ease;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 2px solid #e6e6ff;
+  outline: none;
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+
+.edit-input:focus {
+  border-color: #7b61ff;
+  box-shadow: 0 0 0 4px rgba(123, 97, 255, 0.15);
+}
+
+.edit-form .update-button,
+.edit-form .cancel-button {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.edit-form .update-button {
+  background: linear-gradient(135deg, #7b61ff, #5a3dff);
+  color: white;
+}
+
+.edit-form .cancel-button {
+  background: #f8eded;
+  color: #2e2e2e;
+}
+
+.edit-form .update-button:hover,
+.edit-form .cancel-button:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 520px) {
+  #addbNewTaskContainer {
+    flex-direction: column;
+  }
+
+  #addNewTaskButton {
+    width: 100%;
+  }
+
+  .task-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .task-item {
+    max-width: 100%;
+  }
+
+  .actions-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@keyframes popupScale {
+  from {
+    transform: scale(0.96);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
