@@ -7,7 +7,10 @@ export type todoListUiHandlers = {
 };
 export default class TodoListRenderer {
     taskListElement: HTMLUListElement;
+    messageElement: HTMLElement;
     constructor();
+    showMessage(message: string): void;
+    clearMessage(): void;
     renderEmptyState(): void;
     getSortedTaskList(tasks: Task[]): Task[];
     renderTasks(tasks: Task[], handlers: todoListUiHandlers): void;

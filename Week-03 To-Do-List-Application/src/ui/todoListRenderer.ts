@@ -10,23 +10,35 @@ export type todoListUiHandlers = {
 
 export default class TodoListRenderer {
   taskListElement: HTMLUListElement;
+  messageElement: HTMLElement;
 
   constructor() {
     const element = document.getElementById("taskList-container");
-
+    const messageElement = document.getElementById("input-message");
+    
     if (!element) {
-      throw new Error(`Element not found`);
+      throw new Error(`task-list container element not found`);
+    }
+    
+    if (!messageElement) {
+      throw new Error(`message element not found`);
     }
 
     this.taskListElement = element as HTMLUListElement;
+    this.messageElement = messageElement as HTMLElement;
+  }
+
+  showMessage(message: string): void {
+    this.messageElement.textContent = message;
+    this.messageElement.style.color = "red";
+  }
+
+  clearMessage(): void {
+    this.messageElement.textContent = "";
   }
 
   renderEmptyState(): void {
-    const emptyMessageItem = document.createElement("li");
-    emptyMessageItem.textContent = "No tasks yet, Add your first task.";
-    emptyMessageItem.style.color = "gray";
-
-    this.taskListElement.appendChild(emptyMessageItem);
+    this.showMessage("No tasks yet, Add your first task.");
   }
 
   getSortedTaskList(tasks: Task[]) {
@@ -55,7 +67,7 @@ export default class TodoListRenderer {
 
   renderTasks(tasks: Task[], handlers: todoListUiHandlers): void {
     this.taskListElement.innerHTML = "";
-
+    
     if (tasks.length === 0) {
       this.renderEmptyState();
       return;

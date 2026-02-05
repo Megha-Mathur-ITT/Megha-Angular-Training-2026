@@ -1,5 +1,5 @@
 export default class TodoListInputController {
-    constructor(handlers) {
+    constructor(handlers, todoListUiRenderer) {
         const inputField = document.getElementById("taskInput");
         const addNewTaskButton = document.getElementById("addNewTaskButton");
         const prioritySelect = document.getElementById("prioritySelect");
@@ -15,6 +15,7 @@ export default class TodoListInputController {
         this.taskInputElement = inputField;
         this.addNewTaskButtonElement = addNewTaskButton;
         this.prioritySelectElement = prioritySelect;
+        this.todoListUiRenderer = todoListUiRenderer;
         this.addNewTaskButtonElement.addEventListener("click", () => {
             this.handleAddNewTask(handlers);
         });
@@ -27,11 +28,13 @@ export default class TodoListInputController {
     handleAddNewTask(handlers) {
         const title = this.taskInputElement.value.trim();
         if (!title) {
+            this.todoListUiRenderer.showMessage("Task cannot be empty. Please enter a task title");
             return;
         }
         const priority = this.prioritySelectElement.value;
         handlers.OnAddNewTask(title, priority);
         this.taskInputElement.value = "";
+        this.todoListUiRenderer.clearMessage();
     }
 }
-//# sourceMappingURL=todoListInputController.js.map
+//# sourceMappingURL=InputController.js.map

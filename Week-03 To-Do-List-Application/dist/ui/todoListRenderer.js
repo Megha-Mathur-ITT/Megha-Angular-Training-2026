@@ -2,16 +2,25 @@ import { createTaskListItem } from "./helpers/todoListDomBuilders.js";
 export default class TodoListRenderer {
     constructor() {
         const element = document.getElementById("taskList-container");
+        const messageElement = document.getElementById("input-message");
         if (!element) {
-            throw new Error(`Element not found`);
+            throw new Error(`task-list container element not found`);
+        }
+        if (!messageElement) {
+            throw new Error(`message element not found`);
         }
         this.taskListElement = element;
+        this.messageElement = messageElement;
+    }
+    showMessage(message) {
+        this.messageElement.textContent = message;
+        this.messageElement.style.color = "red";
+    }
+    clearMessage() {
+        this.messageElement.textContent = "";
     }
     renderEmptyState() {
-        const emptyMessageItem = document.createElement("li");
-        emptyMessageItem.textContent = "No tasks yet, Add your first task.";
-        emptyMessageItem.style.color = "gray";
-        this.taskListElement.appendChild(emptyMessageItem);
+        this.showMessage("No tasks yet, Add your first task.");
     }
     getSortedTaskList(tasks) {
         let pendingTasks = tasks.filter((currentTask) => (currentTask.status === "pending"));

@@ -24,6 +24,10 @@ header h1 {
   color: #1f1f1f;
 }
 
+.todo-list #taskList-container {
+  list-style: none;
+}
+
 #remove-controls {
   display: flex;
   align-items: center;
