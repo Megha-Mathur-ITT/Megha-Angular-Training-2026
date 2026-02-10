@@ -1,4 +1,5 @@
 import { Task } from "../../../types/todoListTypes.js";
+import TodoListRenderer from "../../../ui/todoListRenderer.js";
 
 export type todoListUiHandlers = {
     onToggleStatus: (taskId: string) => void;
@@ -23,7 +24,11 @@ function createButton(
     return actionButton;
 }
 
-function createEditForm(task: Task, handlers: todoListUiHandlers): HTMLDivElement {
+function createEditForm(
+    task: Task,
+    handlers: todoListUiHandlers,
+    todoListUiRenderer: TodoListRenderer
+): HTMLDivElement {
     const editTitleFormContainer = document.createElement("div");
     editTitleFormContainer.className = "editFormContainer";
 
@@ -40,7 +45,20 @@ function createEditForm(task: Task, handlers: todoListUiHandlers): HTMLDivElemen
         "Update",
         () => {
             const newTitle = input.value.trim();
-            handlers.onEditTask(task.taskId, newTitle);
+
+            if (!newTitle) {
+                todoListUiRenderer.showMessage("Task title cannot be empty!");
+                return;
+            }
+
+            try {
+                handlers.onEditTask(task.taskId, newTitle);
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    todoListUiRenderer.showMessage(error.message);
+                }
+            }
+
             editTitleFormContainer.remove();
         }
     );
@@ -61,14 +79,27 @@ function createEditForm(task: Task, handlers: todoListUiHandlers): HTMLDivElemen
     return editTitleFormContainer;
 }
 
-export function createTaskActionContainer(task: Task, handlers: todoListUiHandlers): HTMLDivElement {
+export function createTaskActionContainer(
+    task: Task,
+    handlers: todoListUiHandlers,
+    todoListUiRenderer: TodoListRenderer
+): HTMLDivElement {
     const taskActionsContainer = document.createElement("div");
     taskActionsContainer.className = "actions-container";
 
     const toggleStatusButton = createButton(
         "status-toggle-button",
         task.status === "done" ? "Undo" : "Done",
-        () => handlers.onToggleStatus(task.taskId)
+        () => {
+            try {
+                handlers.onToggleStatus(task.taskId);
+            }
+            catch (error: unknown) {
+                if (error instanceof Error) {
+                    todoListUiRenderer.showMessage(error.message);
+                }
+            }
+        }
     );
     const deleteButton = createButton(
         "delete-button",
@@ -79,14 +110,23 @@ export function createTaskActionContainer(task: Task, handlers: todoListUiHandle
         "edit-button",
         "Edit",
         () => {
-            const editTitleFormContainer = createEditForm(task, handlers);
+            const editTitleFormContainer = createEditForm(task, handlers, todoListUiRenderer);
             document.body.appendChild(editTitleFormContainer);
         }
     );
     const priorityButton = createButton(
         `priority-button ${task.priority}`,
         task.priority === "high" ? "Low" : "High",
-        () => handlers.onTogglePriority(task.taskId)
+        () => {
+            try {
+                handlers.onTogglePriority(task.taskId);
+            }
+            catch (error: unknown) {
+                if (error instanceof Error) {
+                    todoListUiRenderer.showMessage(error.message);
+                }
+            }
+        }
     );
 
     taskActionsContainer.appendChild(toggleStatusButton);

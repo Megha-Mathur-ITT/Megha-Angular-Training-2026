@@ -7,21 +7,7 @@ function createButton(buttonClassName, buttonTextContent, onclick) {
     }
     return actionButton;
 }
-export function createUpdateButton(task, input, editTitleFormContainer, handlers) {
-    const updateButton = createButton("update-button", "Update", () => {
-        const newTitle = input.value.trim();
-        handlers.onEditTask(task.taskId, newTitle);
-        editTitleFormContainer.remove();
-    });
-    return updateButton;
-}
-export function createCancelButton(editTitleFormContainer) {
-    const cancelButton = createButton("cancel-button", "Cancel", () => {
-        editTitleFormContainer.remove();
-    });
-    return cancelButton;
-}
-function createEditForm(task, handlers) {
+function createEditForm(task, handlers, todoListUiRenderer) {
     const editTitleFormContainer = document.createElement("div");
     editTitleFormContainer.className = "editFormContainer";
     const editForm = document.createElement("div");
@@ -30,28 +16,59 @@ function createEditForm(task, handlers) {
     input.type = "text";
     input.value = task.title;
     input.className = "edit-input";
-    const updateButton = createUpdateButton(task, input, editTitleFormContainer, handlers);
-    const cancelButton = createCancelButton(editTitleFormContainer);
+    const updateButton = createButton("update-button", "Update", () => {
+        const newTitle = input.value.trim();
+        if (!newTitle) {
+            todoListUiRenderer.showMessage("Task title cannot be empty!");
+            return;
+        }
+        try {
+            handlers.onEditTask(task.taskId, newTitle);
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                todoListUiRenderer.showMessage(error.message);
+            }
+        }
+        editTitleFormContainer.remove();
+    });
+    const cancelButton = createButton("cancel-button", "Cancel", () => {
+        editTitleFormContainer.remove();
+    });
     editForm.appendChild(input);
     editForm.appendChild(updateButton);
     editForm.appendChild(cancelButton);
     editTitleFormContainer.appendChild(editForm);
     return editTitleFormContainer;
 }
-export function createEditButton(task, handlers) {
-    const editButton = createButton("edit-button", "Edit", () => {
-        const editTitleFormContainer = createEditForm(task, handlers);
-        document.body.appendChild(editTitleFormContainer);
-    });
-    return editButton;
-}
-export function createTaskActionContainer(task, handlers) {
+export function createTaskActionContainer(task, handlers, todoListUiRenderer) {
     const taskActionsContainer = document.createElement("div");
     taskActionsContainer.className = "actions-container";
-    const toggleStatusButton = createButton("status-toggle-button", task.status === "done" ? "Undo" : "Done", () => handlers.onToggleStatus(task.taskId));
+    const toggleStatusButton = createButton("status-toggle-button", task.status === "done" ? "Undo" : "Done", () => {
+        try {
+            handlers.onToggleStatus(task.taskId);
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                todoListUiRenderer.showMessage(error.message);
+            }
+        }
+    });
     const deleteButton = createButton("delete-button", "Delete", () => handlers.onDeleteTask(task.taskId));
-    const editButton = createEditButton(task, handlers);
-    const priorityButton = createButton(`priority-button ${task.priority}`, task.priority === "high" ? "Low" : "High", () => handlers.onTogglePriority(task.taskId));
+    const editButton = createButton("edit-button", "Edit", () => {
+        const editTitleFormContainer = createEditForm(task, handlers, todoListUiRenderer);
+        document.body.appendChild(editTitleFormContainer);
+    });
+    const priorityButton = createButton(`priority-button ${task.priority}`, task.priority === "high" ? "Low" : "High", () => {
+        try {
+            handlers.onTogglePriority(task.taskId);
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                todoListUiRenderer.showMessage(error.message);
+            }
+        }
+    });
     taskActionsContainer.appendChild(toggleStatusButton);
     taskActionsContainer.appendChild(editButton);
     taskActionsContainer.appendChild(deleteButton);

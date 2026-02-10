@@ -16,7 +16,7 @@ export default class TodoServices {
     toggleTaskStatus(taskId) {
         const task = this.tasksList.find((currentTask) => currentTask.taskId === taskId);
         if (!task) {
-            return;
+            throw new Error("Task not found");
         }
         task.status = task.status === "pending" ? "done" : "pending";
         storage.saveTodoList(this.tasksList);
@@ -24,7 +24,7 @@ export default class TodoServices {
     addTask(title, taskPriority) {
         const trimmedTitle = title.trim();
         if (!trimmedTitle) {
-            return;
+            throw new Error("Task title cannot be empty");
         }
         const newTask = {
             taskId: crypto.randomUUID(),
@@ -39,8 +39,11 @@ export default class TodoServices {
     editTask(taskId, newTaskTitle) {
         const task = this.tasksList.find((currentTask) => currentTask.taskId === taskId);
         const trimmedTitle = newTaskTitle.trim();
-        if (!task || !trimmedTitle) {
-            return;
+        if (!task) {
+            throw new Error("Task not found.");
+        }
+        if (!trimmedTitle) {
+            throw new Error("Task title cannot be empty");
         }
         task.title = trimmedTitle;
         storage.saveTodoList(this.tasksList);
@@ -52,7 +55,7 @@ export default class TodoServices {
     toggleTaskPriority(taskId) {
         const task = this.tasksList.find((currentTask) => currentTask.taskId === taskId);
         if (!task) {
-            return;
+            throw new Error("Task not found");
         }
         const newPriority = task.priority === "high" ? "low" : "high";
         task.priority = newPriority;

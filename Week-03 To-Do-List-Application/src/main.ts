@@ -25,7 +25,9 @@ function refreshUI(): void {
       service.toggleTaskPriority(taskId);
       refreshUI();
     }
-  });
+  }, 
+  todoListUiRenderer
+);
 }
 
 bindInputController(service, refreshUI, todoListUiRenderer);

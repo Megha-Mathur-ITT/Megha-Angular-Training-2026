@@ -32,7 +32,14 @@ export default class TodoListInputController {
             return;
         }
         const priority = this.prioritySelectElement.value;
-        handlers.OnAddNewTask(title, priority);
+        try {
+            handlers.OnAddNewTask(title, priority);
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                this.todoListUiRenderer.showMessage(error.message);
+            }
+        }
         this.taskInputElement.value = "";
         this.todoListUiRenderer.clearMessage();
     }

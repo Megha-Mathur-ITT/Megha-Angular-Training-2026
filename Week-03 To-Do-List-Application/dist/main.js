@@ -23,7 +23,7 @@ function refreshUI() {
             service.toggleTaskPriority(taskId);
             refreshUI();
         }
-    });
+    }, todoListUiRenderer);
 }
 bindInputController(service, refreshUI, todoListUiRenderer);
 bindRemoveController(service, refreshUI, todoListUiRenderer);

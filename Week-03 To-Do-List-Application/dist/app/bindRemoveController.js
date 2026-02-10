@@ -11,6 +11,6 @@ export default function bindRemoveControls(service, refreshUI, todoListUiRendere
             service.removeTasksByFilters(statusFilter, priorityFilter);
             refreshUI();
         }
-    });
+    }, todoListUiRenderer);
 }
 //# sourceMappingURL=bindRemoveController.js.map

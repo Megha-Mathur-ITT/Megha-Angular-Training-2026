@@ -13,6 +13,6 @@ export default class TodoListRenderer {
     clearMessage(): void;
     renderEmptyState(): void;
     getSortedTaskList(tasks: Task[]): Task[];
-    renderTasks(tasks: Task[], handlers: todoListUiHandlers): void;
+    renderTasks(tasks: Task[], handlers: todoListUiHandlers, todoListUiRenderer: TodoListRenderer): void;
 }
 //# sourceMappingURL=todoListRenderer.d.ts.map

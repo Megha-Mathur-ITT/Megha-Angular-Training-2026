@@ -24,9 +24,8 @@ export default class TodoListInputController {
         if (!addNewTaskButton) {
             throw new Error(`Element "${addNewTaskButton} is not found."`);
         }
-        
-        if(!prioritySelect)
-        {
+
+        if (!prioritySelect) {
             throw new Error(`Element "${prioritySelect} is not found."`);
         }
 
@@ -56,7 +55,14 @@ export default class TodoListInputController {
 
         const priority = this.prioritySelectElement.value as TaskPriority;
 
-        handlers.OnAddNewTask(title, priority);
+        try {
+            handlers.OnAddNewTask(title, priority);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                this.todoListUiRenderer.showMessage(error.message);
+            }
+        }
+
         this.taskInputElement.value = "";
         this.todoListUiRenderer.clearMessage();
     }

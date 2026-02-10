@@ -1,5 +1,5 @@
 export default class TodoListRemoveController {
-    constructor(handlers) {
+    constructor(handlers, todoListUiRenderer) {
         const removePrioritySelect = document.getElementById("removePrioritySelect");
         const removeStatusSelect = document.getElementById("removeStatusSelect");
         const removeTasksButton = document.getElementById("removeTasksButton");
@@ -9,10 +9,18 @@ export default class TodoListRemoveController {
         this.removePrioritySelect = removePrioritySelect;
         this.removeStatusSelect = removeStatusSelect;
         this.removeTasksButton = removeTasksButton;
+        this.todoListUiRenderer = todoListUiRenderer;
         removeTasksButton.addEventListener("click", () => {
             const statusFilter = removeStatusSelect.value;
             const priorityFilter = removePrioritySelect.value;
-            handlers.onRemoveTask(statusFilter, priorityFilter);
+            try {
+                handlers.onRemoveTask(statusFilter, priorityFilter);
+            }
+            catch (error) {
+                if (error instanceof Error) {
+                    this.todoListUiRenderer.showMessage(error.message);
+                }
+            }
         });
     }
 }

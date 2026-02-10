@@ -65,7 +65,11 @@ export default class TodoListRenderer {
     return sortedTasks;
   }
 
-  renderTasks(tasks: Task[], handlers: todoListUiHandlers): void {
+  renderTasks(
+    tasks: Task[],
+    handlers: todoListUiHandlers,
+    todoListUiRenderer: TodoListRenderer
+  ): void {
     this.taskListElement.innerHTML = "";
     
     if (tasks.length === 0) {
@@ -76,7 +80,7 @@ export default class TodoListRenderer {
     const sortedTasks = this.getSortedTaskList(tasks);
 
     sortedTasks.forEach((task) => {
-      const taskListItem = createTaskListItem(task, handlers);
+      const taskListItem = createTaskListItem(task, handlers, todoListUiRenderer);
       this.taskListElement.appendChild(taskListItem);
     });
   }
